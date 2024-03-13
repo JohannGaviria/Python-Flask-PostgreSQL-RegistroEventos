@@ -1,5 +1,6 @@
 from flask import Flask
 from .Routes.Users import CreateUser, GetUser, DeleteUser, UpdateUser
+from .Routes.Events import CreateEvent, GetEvent
 from .Utils.Database import db
 from dotenv import load_dotenv
 from os import environ
@@ -30,5 +31,8 @@ def init_app(config):
     app.register_blueprint(GetUser.main, url_prefix='/')
     app.register_blueprint(DeleteUser.main, url_prefix='/')
     app.register_blueprint(UpdateUser.main, url_prefix='/')
+
+    app.register_blueprint(CreateEvent.main, url_prefix='/')
+    app.register_blueprint(GetEvent.main, url_prefix='/')
 
     return app # Retonarmos la aplicación inicializada
