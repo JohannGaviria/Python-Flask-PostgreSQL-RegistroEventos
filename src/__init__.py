@@ -1,5 +1,5 @@
 from flask import Flask
-from .Routes import Index
+from .Routes.Users import CreateUser
 from .Utils.Database import db
 from dotenv import load_dotenv
 from os import environ
@@ -23,7 +23,9 @@ def init_app(config):
 
     db.init_app(app) # Inicializamos la base de datos con la aplicación
 
+    app.config['WTF_CSRF_ENABLED'] = False # Desactivamos la proteción CRSF para simplificar la prueba de la API
+
     # Registramos todas las rutas
-    app.register_blueprint(Index.main, url_prefix='/')
+    app.register_blueprint(CreateUser.main, url_prefix='/')
 
     return app # Retonarmos la aplicación inicializada
