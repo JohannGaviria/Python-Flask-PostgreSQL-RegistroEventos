@@ -1,5 +1,5 @@
 from flask import Flask
-from .Routes.Users import CreateUser
+from .Routes.Users import CreateUser, GetUser, DeleteUser, UpdateUser
 from .Utils.Database import db
 from dotenv import load_dotenv
 from os import environ
@@ -27,5 +27,8 @@ def init_app(config):
 
     # Registramos todas las rutas
     app.register_blueprint(CreateUser.main, url_prefix='/')
+    app.register_blueprint(GetUser.main, url_prefix='/')
+    app.register_blueprint(DeleteUser.main, url_prefix='/')
+    app.register_blueprint(UpdateUser.main, url_prefix='/')
 
     return app # Retonarmos la aplicación inicializada

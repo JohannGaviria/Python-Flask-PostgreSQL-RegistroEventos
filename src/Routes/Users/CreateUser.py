@@ -7,7 +7,7 @@ from src.Utils.Logger import Logger
 from traceback import format_exc
 
 
-main = Blueprint('User', __name__)
+main = Blueprint('createUser', __name__)
 
 
 # Ruta encargada de crear los usuarios
