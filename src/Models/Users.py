@@ -13,9 +13,6 @@ class User(db.Model):
     password = db.Column(db.String(100), nullable=False)
     phone = db.Column(db.String(20), unique=True, nullable=False)
 
-    # attended_events = db.relationship("Attendance", back_populates="user")
-    # created_events = db.relationship("Event", back_populates="creator_user")
-
     # Constructor de la clase User
     def __init__(self, name, identification_document, email, password, phone):
         self.name = name

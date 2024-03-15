@@ -13,11 +13,8 @@ class Event(db.Model):
     end_date = db.Column(db.DateTime, nullable=False)
     location = db.Column(db.String(255), nullable=False)
 
-    # creator_user = db.relationship("User", back_populates="events_created")
-    # attendees = db.relationship("Attendance", back_populates="event")
-
     # Constructor de la clase Event
-    def __init__(self, creator_id,name, start_date, end_date, location):
+    def __init__(self, creator_id, name, start_date, end_date, location):
         self.creator_id = creator_id
         self.name = name
         self.start_date = start_date

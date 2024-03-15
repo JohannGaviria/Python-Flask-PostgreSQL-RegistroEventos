@@ -11,9 +11,6 @@ class Attendance(db.Model):
     event_id = db.Column(db.Integer, db.ForeignKey('events.event_id'), nullable=False)
     registration_date = db.Column(db.DateTime, nullable=False)
 
-    # user = db.relationship("User", back_populates="attended_events")
-    # event = db.relationship("Event", back_populates="attendees")
-
     # Constructor de la clase Attendance
     def __init__(self, user_id, event_id, registration_date):
         self.user_id = user_id
