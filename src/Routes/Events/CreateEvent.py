@@ -5,6 +5,7 @@ from src.Models.Events import Event
 from src.Utils.Database import db
 from src.Utils.Logger import Logger
 from traceback import format_exc
+from uuid import uuid4
 
 
 main = Blueprint('createEvent', __name__)
@@ -28,6 +29,7 @@ def create_event():
             start_date = form.start_date.data
             end_date = form.end_date.data
             location = form.location.data
+            access_code = str(uuid4())
 
             # Formatear las fechas
             start_date = FormatDate.format_date(start_date)
@@ -35,7 +37,7 @@ def create_event():
 
             with db.session() as session:
                 # Guardar el nuevo evento en la base de datos
-                new_event = Event(creator_id, name, start_date, end_date, location)
+                new_event = Event(creator_id, name, start_date, end_date, location, access_code)
                 session.add(new_event)
                 session.commit()
 
@@ -47,7 +49,8 @@ def create_event():
                                     "name": new_event.name,
                                     "start_date": new_event.start_date,
                                     "end_date": new_event.end_date,
-                                    "location": new_event.location
+                                    "location": new_event.location,
+                                    "access_code": new_event.access_code
                                 }}), 200
 
         # Si los datos no son validos

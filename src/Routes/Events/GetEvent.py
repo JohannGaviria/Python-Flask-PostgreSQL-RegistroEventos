@@ -26,7 +26,8 @@ def get_event(event_id):
                             "name": event.name,
                             "start_date": event.start_date,
                             "end_date": event.end_date,
-                            "location": event.location
+                            "location": event.location,
+                            "access_code": event.access_code
                         }}), 200
 
     except Exception as ex:
