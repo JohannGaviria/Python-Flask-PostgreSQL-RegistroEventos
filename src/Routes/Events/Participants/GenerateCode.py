@@ -43,7 +43,7 @@ def generate_code(event_id, user_id):
         # code_qr = GenerateCode.code_qr(user)
 
         # Verificar si el codigo ya ha sido generado
-        if not participant.join_code == alphanumeric_code:
+        if participant.join_code is not None:
             return jsonify({"message": "already generated join code"}), 409
 
         # Actualizar el codigo de union
@@ -53,7 +53,7 @@ def generate_code(event_id, user_id):
             # Guardar el codigo en la db
             session.commit()
 
-        return jsonify({"message": "Generate codes successfully",
+            return jsonify({"message": "Generate codes successfully",
                         "Alphanumeric code": alphanumeric_code}), 200
 
     except Exception as ex:

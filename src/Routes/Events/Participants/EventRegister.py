@@ -35,6 +35,11 @@ def event_register(event_id, user_id):
         if access_code != event.access_code:
             return jsonify({"message": "Access code is incorrect"}), 403
         
+        # Si el usuario ya se registro al evento
+        participant = Participant.query.filter_by(user_id=user_id).first()
+        if participant:
+            return jsonify({"message": "The user has already registered for the event"}), 409
+        
         with db.session() as session:
             new_participant = Participant(user_id, event_id, join_code=None)
             session.add(new_participant)
